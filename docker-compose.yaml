@@ -1,0 +1,26 @@
+  version: "3"
+
+  services:
+    cyphernode_explorer:
+      image: btc-rpc-explorer:latest
+      labels:
+        - "traefik.docker.network=cyphernodeappsnet"
+        - "traefik.frontend.redirect.regex=^(.*)/explorer$$"
+        - "traefik.frontend.redirect.replacement=$$1/explorer/"
+        - "traefik.frontend.rule=PathPrefix:/explorer;ReplacePathRegex: ^/explorer/(.*) /$$1"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.frontend.auth.basic.usersFile=/htpasswd/htpasswd"
+        - "traefik.enable=true"
+        - "traefik.port=3002"
+      environment:
+        BTCEXP_BITCOIND_URI: bitcoin://bitcoin:password@bitcoin:18332?timeout=10000
+        BTCEXP_HOST: 0.0.0.0
+      networks:
+        - cyphernodenet
+        - cyphernodeappsnet
+      restart: always
+  networks:
+    cyphernodenet:
+      external: true
+    cyphernodeappsnet:
+      external: true
