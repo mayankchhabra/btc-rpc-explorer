@@ -11,7 +11,7 @@ block content
 		div(class="col")
 			if (!config.demoSite && (!config.credentials.rpc || !config.credentials.rpc.rpc))
 				span(style="float: right;")
-					a(href="/disconnect", class="btn btn-secondary") Disconnect from node
+					a(href="disconnect", class="btn btn-secondary") Disconnect from node
 	
 	hr
 
@@ -46,7 +46,7 @@ block endOfBody
 				postData._csrf = csrfToken;
 				
 				$.post(
-					"/rpc-terminal",
+					"rpc-terminal",
 					postData,
 					function(response, textStatus, jqXHR) {
 						var t = new Date().getTime();

@@ -18,7 +18,7 @@ div(class="table-responsive")
 				if (block)
 					tr
 						td(class="data-cell monospace")
-							a(href=("/block-height/" + block.height)) #{block.height.toLocaleString()}
+							a(href=("block-height/" + block.height)) #{block.height.toLocaleString()}
 
 							if (global.specialBlocks && global.specialBlocks[block.hash])
 								span  
